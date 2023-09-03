@@ -31,12 +31,14 @@ startBtn.onclick = function() {
     this.textContent = 'START TYPING ALREADY'
     userStarted = true
     renderText(text)
+    document.querySelector('h5').textContent = `${container.childElementCount} characters total!`
     document.querySelector('textarea').style.display = 'none'
     timerInterval = setInterval(() => timer++, 1000)
 }
 
 document.onkeypress = (e)  => {
     if (!userStarted) return
+    if (e.keyCode == 32) e.preventDefault()
     const currentChar =  document.
                          querySelector(`#text${currentCharCount}`)
     const nextChar =  document.
