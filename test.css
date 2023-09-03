@@ -1,0 +1,194 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  margin-left: 1em;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.hasBlink {
+  animation: blink 1.8s infinite;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  gap: 1em;
+}
+
+input {
+  padding: 2em;
+  width: 30vw;
+}
+
+#board>div {
+  width: 3rem;
+  height: 3rem;
+  outline: 5px solid royalblue;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.btn {
+  display: grid;
+  place-content: center;
+}
+
+.btn:hover {
+  background-color: tomato;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #board>div>div.highlighted {
+  background-color: red !important;
+} */
