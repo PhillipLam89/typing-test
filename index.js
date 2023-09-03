@@ -9,7 +9,6 @@ let mistakes = 0
 let timer = 0
 let timerInterval = null
 
-
 function renderText(str) {
    const arrayStr = str.split('')
    arrayStr.forEach((char,index) => {
@@ -20,7 +19,6 @@ function renderText(str) {
     })
 }
 renderText(text)
-
 
 startBtn.onclick = function() {
     container.innerHTML = ''
@@ -40,6 +38,8 @@ startBtn.onclick = function() {
 document.onkeypress = (e)  => {
     if (!userStarted) return
     if (e.keyCode == 32) e.preventDefault()
+    //prevent scrolling when user types space-bar
+
     const currentChar =  document.
                          querySelector(`#text${currentCharCount}`)
     const nextChar =  document.
@@ -49,18 +49,18 @@ document.onkeypress = (e)  => {
         nextChar?.classList?.add('hasBlink')
         currentChar.classList?.remove('hasBlink')
         currentCharCount++
-
-        if (currentCharCount === text.length) {
-            clearInterval(timerInterval)
-            document.body.textContent = `You got
-            ${mistakes} mistakes and ${text.length - mistakes} correct in ${timer} seconds
-            ${container.childElementCount} characters total!
-            `
-        }
     } else if (!currentChar.dataset.tried) {
-            currentChar.classList?.remove('hasBlink')
+            //prevents duplicate mistake counts for each char
             mistakes++
             currentChar.dataset.tried = true
             currentChar.style.background = 'red'
     }
+
+    if (currentCharCount === text.length) {
+    clearInterval(timerInterval)
+    document.body.textContent = `You got
+    ${mistakes} mistakes and ${text.length - mistakes} correct in ${timer} seconds
+    ${container.childElementCount} characters total!
+    `
+}
 }
