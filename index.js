@@ -24,6 +24,7 @@ renderText(text)
 
 startBtn.onclick = function() {
     container.innerHTML = ''
+
     text = document.querySelector('textarea').value.trim()
             ||
             'DEFAULT TEST: DONT BE LAZY...REFRESH... WRITE YOUR OWN TEST :D'
@@ -42,10 +43,10 @@ document.onkeypress = (e)  => {
     const currentChar =  document.
                          querySelector(`#text${currentCharCount}`)
     const nextChar =  document.
-                         querySelector(`#text${currentCharCount + 1}`) || 0
+                         querySelector(`#text${currentCharCount + 1}`)
     if (e.key == text[currentCharCount]) {
         currentChar.style.background = 'green'
-        nextChar.classList?.add('hasBlink')
+        nextChar?.classList?.add('hasBlink')
         currentChar.classList?.remove('hasBlink')
         currentCharCount++
 
