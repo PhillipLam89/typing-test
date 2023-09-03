@@ -5,7 +5,8 @@ body {
 
 }
 textarea {
-    width: 50%;
+  font-size: 2rem;
+    width: 60%;
     height: 35vh;
 }
 @keyframes blink {
@@ -119,6 +120,51 @@ textarea {
 
 
 
+
+
+
+
+
+
+
+
+
+
+/* body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  gap: 1em;
+}
+
+input {
+  padding: 2em;
+  width: 30vw;
+}
+
+#board>div {
+  width: 3rem;
+  height: 3rem;
+  outline: 5px solid royalblue;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.btn {
+  display: grid;
+  place-content: center;
+}
+
+.btn:hover {
+  background-color: tomato;
+} */
 
 
 
