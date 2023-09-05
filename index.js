@@ -20,13 +20,20 @@ let timer = 0
 let currentCharCount = 0
 let myInterval = null
 
+function renderDifficulty() {
+ const all = [...document.querySelectorAll('input')]
+ const rightOne = all.find(input => input.checked).value
+ return collection[rightOne]
+}
+
 startBtn.onclick = function(e) {
     container.innerHTML = ''
     this.disabled = true
     userStarted = true
     this.textContent = 'TYPE NOW!'
     textArea.style.display = 'none'
-    text = textArea.value.trim() || 'HEY WRITE YOUR OWN TEST'
+    document.querySelector('fieldset').style.display = 'none'
+    text = textArea.value.trim() || renderDifficulty()
     renderText(text)
     document.querySelector('h6').textContent = `Current Mistakes: ${mistakes}`
     document.querySelector('h5').textContent = `${text.length} chars`
