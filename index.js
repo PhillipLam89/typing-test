@@ -66,12 +66,13 @@ document.onkeypress = (e) => {
     if (currentCharCount === text.length) {
         clearInterval(myInterval)
         const correctCount = text.length - mistakes
-        const wpm = [correctCount / timer * 60 ] / 5
-
+        timer = !timer ? 0.5 : timer
+        const wpm = [correctCount / timer * 60 ] / 4.7
+                    //average length of English words is 4.7 chars
         document.body.innerHTML = `<h1>You finished in ${timer} seconds</h1>
                                    <p>${mistakes} mistakes</p>
                                    <p> ${correctCount} letters correct out of ${text.length}</p>
                                    <p> accuracy: ${(correctCount / text.length * 100).toFixed(2) }%</p>
-                                   <h3>${wpm} Words per Minute</h3> `
+                                   <h3>${wpm.toFixed(0) +' Words per Minute'} </h3> `
     }
 }
