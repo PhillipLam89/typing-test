@@ -57,7 +57,7 @@ document.onkeypress = (e) => {
         `Current Mistakes: ${++mistakes}`
         char.dataset.tried = true
         char.style.background = 'red'
-        if (mistakes > Math.round(text.length * 0.5)) {
+        if (mistakes > Math.round(text.length * 0.15)) {
             alert('TOO MANY MISTAKES, RESTARTED')
             window.location.reload()
             return
