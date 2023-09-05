@@ -4,9 +4,10 @@ body {
   margin-left: 1em;
 
 }
+
 textarea {
   font-size: 2rem;
-    width: 60%;
+    width: 90%;
     height: 35vh;
 }
 @keyframes blink {
@@ -20,10 +21,8 @@ textarea {
 }
 
 .hasBlink {
-  animation: blink 1.8s infinite;
+  animation: blink 1.5s infinite;
 }
-
-
 
 
 
