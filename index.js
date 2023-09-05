@@ -1,66 +1,66 @@
-let text = 'Your test will appear here!'
-
+let text = 'sample testing text'
 const startBtn = document.getElementById('start')
 const container = document.getElementById('container')
-
-let userStarted = false
-let currentCharCount = 0
-let mistakes = 0
-let timer = 0
-let timerInterval = null
+const textArea = document.querySelector('textarea')
 
 function renderText(str) {
-   const arrayStr = str.split('')
-   arrayStr.forEach((char,index) => {
-    const spanBox = document.createElement('span')
-    spanBox.id = 'text'+index
-    spanBox.textContent = char
-    container.append(spanBox)
+    const arr = str.split('')
+    arr.forEach((char, index) => {
+        const span = document.createElement('span')
+        span.id = `char${index}`
+        span.textContent = char
+        container.append(span)
     })
 }
 renderText(text)
 
-startBtn.onclick = function() {
-    container.innerHTML = ''
+let userStarted = false
+let mistakes = 0
+let timer = 0
+let currentCharCount = 0
+let myInterval = null
 
-    text = document.querySelector('textarea').value.trim()
-            ||
-            'DEFAULT TEST: DONT BE LAZY...REFRESH... WRITE YOUR OWN TEST :D'
+startBtn.onclick = function(e) {
+    container.innerHTML = ''
     this.disabled = true
-    this.textContent = 'START TYPING ALREADY'
     userStarted = true
+    this.textContent = 'TYPE NOW!'
+    textArea.style.display = 'none'
+    text = textArea.value.trim() || 'HEY WRITE YOUR OWN TEST'
     renderText(text)
-    document.querySelector('h5').textContent = `${container.childElementCount} characters total!`
-    document.querySelector('textarea').style.display = 'none'
-    timerInterval = setInterval(() => timer++, 1000)
+    document.querySelector('h6').textContent = `Current Mistakes: ${mistakes}`
+    document.querySelector('h5').textContent = `${text.length} chars`
+    myInterval = setInterval(() => timer++,1000)
 }
 
-document.onkeypress = (e)  => {
+document.onkeypress = (e) => {
     if (!userStarted) return
     if (e.keyCode == 32) e.preventDefault()
-    //prevent scrolling when user types space-bar
+    const char = document.getElementById(`char${currentCharCount}`)
+    const nextChar = char.nextElementSibling
 
-    const currentChar =  document.
-                         querySelector(`#text${currentCharCount}`)
-    const nextChar =  document.
-                         querySelector(`#text${currentCharCount + 1}`)
-    if (e.key == text[currentCharCount]) {
-        currentChar.style.background = 'green'
-        nextChar?.classList?.add('hasBlink')
-        currentChar.classList?.remove('hasBlink')
+    if (e.key == char.textContent) {
         currentCharCount++
-    } else if (!currentChar.dataset.tried) {
-            //prevents duplicate mistake counts for each char
-            mistakes++
-            currentChar.dataset.tried = true
-            currentChar.style.background = 'red'
+        char.style.background = 'green'
+        nextChar?.classList?.add('hasBlink')
+        char.classList?.remove('hasBlink')
+    } else if (!char.dataset.tried) {
+        mistakes++
+        document.querySelector('h6').textContent=
+        `Current Mistakes: ${mistakes}`
+        char.dataset.tried = true
+        char.style.background = 'red'
+        if (mistakes > Math.round(text.length * 0.5)) {
+            alert('TOO MANY MISTAKES, RESTARTED')
+            window.location.reload()
+            return
+        }
     }
-
     if (currentCharCount === text.length) {
-    clearInterval(timerInterval)
-    document.body.textContent = `You got
-    ${mistakes} mistakes and ${text.length - mistakes} correct in ${timer} seconds
-    ${container.childElementCount} characters total!
-    `
+        clearInterval(myInterval)
+        document.body.textContent = `You finished in ${timer} seconds
+        with ${mistakes} mistakes and you got ${text.length - mistakes} correct!`
+    }
 }
-}
+
+
