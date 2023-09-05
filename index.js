@@ -1,4 +1,4 @@
-let text = 'sample text'
+let text = 'sample text, your test will appear here'
 const startBtn = document.getElementById('start')
 const container = document.getElementById('container')
 const textArea = document.querySelector('textarea')
@@ -37,7 +37,7 @@ startBtn.onclick = function(e) {
     renderText(text)
     document.querySelector('h6').textContent = `Current Mistakes: ${mistakes}`
     document.querySelector('h5').textContent = `${text.length} chars`
-    myInterval = setInterval(() => timer++,1000)
+    myInterval = setInterval(() => timer+= 0.25, 250)
 }
 
 document.onkeypress = (e) => {
@@ -66,8 +66,9 @@ document.onkeypress = (e) => {
     if (currentCharCount === text.length) {
         clearInterval(myInterval)
         const correctCount = text.length - mistakes
-        timer = !timer ? 0.5 : timer
+        timer = timer < 0.25 ? 0.1 : timer // this is better than running the setInterval MORE times
         const wpm = [correctCount / timer * 60 ] / 4.7
+        console.log(timer)
                     //average length of English words is 4.7 chars
         document.body.innerHTML = `<h1>You finished in ${timer} seconds</h1>
                                    <p>${mistakes} mistakes</p>
