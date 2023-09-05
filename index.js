@@ -1,4 +1,4 @@
-let text = 'sample testing text'
+let text = 'sample text'
 const startBtn = document.getElementById('start')
 const container = document.getElementById('container')
 const textArea = document.querySelector('textarea')
@@ -52,9 +52,9 @@ document.onkeypress = (e) => {
         nextChar?.classList?.add('hasBlink')
         char.classList?.remove('hasBlink')
     } else if (!char.dataset.tried) {
-        mistakes++
+
         document.querySelector('h6').textContent=
-        `Current Mistakes: ${mistakes}`
+        `Current Mistakes: ${++mistakes}`
         char.dataset.tried = true
         char.style.background = 'red'
         if (mistakes > Math.round(text.length * 0.5)) {
@@ -65,9 +65,13 @@ document.onkeypress = (e) => {
     }
     if (currentCharCount === text.length) {
         clearInterval(myInterval)
-        document.body.textContent = `You finished in ${timer} seconds
-        with ${mistakes} mistakes and you got ${text.length - mistakes} correct!`
+        const correctCount = text.length - mistakes
+        const wpm = [correctCount / timer * 60 ] / 5
+
+        document.body.innerHTML = `<h1>You finished in ${timer} seconds</h1>
+                                   <p>${mistakes} mistakes</p>
+                                   <p> ${correctCount} letters correct out of ${text.length}</p>
+                                   <p> accuracy: ${(correctCount / text.length * 100).toFixed(2) }%</p>
+                                   <h3>${wpm} Words per Minute</h3> `
     }
 }
-
-
