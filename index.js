@@ -81,9 +81,7 @@ document.onkeypress = (e) => {
         timer = timer < 0.25 ? 0.1 : timer // this is better than running the setInterval MORE times
         const wpm = [correctCount / timer * 60 ] / 4.7
         if (timer > 60) {
-            console.log('it ran')
              timer = convertSeconds(timer)
-             console.log('new timer', timer)
         }
 
                     //average length of English words is 4.7 chars
