@@ -28,8 +28,9 @@ function renderDifficulty() {
  const rightOne = all.find(input => input.checked).value
  return collection[rightOne]
 }
-textArea.onkeypress = (e) => {
-    preTestCharCounter.textContent = `Total chars: ${++currentCharCount}`
+textArea.oninput = (e) => {
+    preTestCharCounter.textContent =
+    `Total chars: ${textArea.value.trim().length}`
 }
 
 startBtn.onclick = function(e) {
