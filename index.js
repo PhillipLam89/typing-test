@@ -1,4 +1,4 @@
-let text = 'sample text, your test will appear here'
+let text = 'sample text, your test will appear here, timer STARTS when you click Start'
 const startBtn = document.getElementById('start')
 const container = document.getElementById('container')
 const textArea = document.querySelector('textarea')
@@ -34,7 +34,7 @@ textArea.oninput = (e) => {
 }
 
 startBtn.onclick = function(e) {
-    currentCharCount = 0
+
     container.innerHTML = ''
     this.disabled = true
     userStarted = true
@@ -67,8 +67,8 @@ document.onkeypress = (e) => {
         currentCharCount++
         char.style.background = !char.dataset.tried
                                      ?
-                                'green' : 'goldenrod'
-                // if they missed then corrected a mistake => goldenrod background
+                                'chartreuse' : 'gold'
+                // if they missed then corrected a mistake => gold background
 
         nextChar?.classList?.add('hasBlink')
         char.classList?.remove('hasBlink')
@@ -79,7 +79,6 @@ document.onkeypress = (e) => {
         char.style.background = 'red'
     }
     if (currentCharCount === text.length) {
-        console.log(timer)
         clearInterval(myInterval)
         const correctCount = text.length - mistakes
         timer = timer < 0.25 ? 0.1 : timer // this is better than running the setInterval MORE times
