@@ -64,7 +64,9 @@ document.onkeypress = (e) => {
 
     if (e.key == char.textContent) {
         currentCharCount++
-        char.style.background = 'green'
+        char.style.background = !char.dataset.tried  ?
+                             'green' : 'goldenrod'
+
         nextChar?.classList?.add('hasBlink')
         char.classList?.remove('hasBlink')
     } else if (!char.dataset.tried) {
@@ -79,7 +81,7 @@ document.onkeypress = (e) => {
         const correctCount = text.length - mistakes
         timer = timer < 0.25 ? 0.1 : timer // this is better than running the setInterval MORE times
         const wpm = [correctCount / timer * 60 ] / 4.7
-        if (timer > 60) timer = convertSeconds(timer)
+        if (timer >= 60) timer = convertSeconds(timer)
 
                     //average length of English words is 4.7 chars
         document.body.innerHTML = `<h1>You finished in ${timer} seconds</h1>
