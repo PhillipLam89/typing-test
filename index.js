@@ -1,4 +1,4 @@
-let text = 'sample text, your test will appear here, timer STARTS when you click Start'
+let text = 'sample text, your test will appear here'
 const startBtn = document.getElementById('start')
 const container = document.getElementById('container')
 const textArea = document.querySelector('textarea')
@@ -46,6 +46,8 @@ startBtn.onclick = function(e) {
     renderText(text)
     mistakesTag.textContent = `Current Mistakes: ${mistakes}`
     charCounterTag.textContent = `${text.length} chars`
+    const firstHighlight = allTiles.find(letterDiv => letterDiv.textContent == text[0].toUpperCase())
+    firstHighlight.classList.add('hasHighlight')
     myInterval = setInterval(() => timer+= 0.25, 250)
 }
 
@@ -65,6 +67,7 @@ document.onkeypress = (e) => {
 
     if (e.key == char.textContent) {
         currentCharCount++
+        nextChar && updateHighlights(nextChar.textContent)
         char.style.background = !char.dataset.tried
                                      ?
                                 'chartreuse' : 'gold'
@@ -93,3 +96,5 @@ document.onkeypress = (e) => {
                                    <h3>${wpm.toFixed(0) +' Words per Minute'} </h3> `
     }
 }
+
+
