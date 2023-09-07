@@ -36,7 +36,7 @@ textarea {
 
 .hasHighlight {
   transition: 0.5s;
-  background: yellow;
+  background: orange;
 }
 
 #keyboard-container {
