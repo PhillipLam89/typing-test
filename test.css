@@ -2,13 +2,14 @@ body {
   min-height: 100vh;
   margin: 0;
   margin-left: 1em;
-
+  letter-spacing: .1rem;
 }
-
+h2 {
+  margin: 0;
+}
 textarea {
   font-size: 2rem;
-    width: 90%;
-    height: 35vh;
+    height: 25vh;
 }
 @keyframes blink {
   0% {
@@ -21,178 +22,25 @@ textarea {
 }
 
 .hasBlink {
-  animation: blink 1.5s infinite;
+  animation: blink 1.8s infinite;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* body {
-  min-height: 100vh;
+.row {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-#board {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  justify-items: center;
   gap: 1em;
 }
-
-input {
-  padding: 2em;
-  width: 30vw;
-}
-
-#board>div {
-  width: 3rem;
-  height: 3rem;
-  outline: 5px solid royalblue;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.btn {
+.row > * {
   display: grid;
   place-content: center;
 }
 
-.btn:hover {
-  background-color: tomato;
-} */
+.hasHighlight {
+  transition: 0.5s;
+  background: yellow;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* #board>div>div.highlighted {
-  background-color: red !important;
-} */
+#keyboard-container {
+  display: grid;
+  place-content: center;
+  gap: 1em;
+}
