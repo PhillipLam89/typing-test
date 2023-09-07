@@ -68,9 +68,9 @@ document.onkeypress = (e) => {
     if (e.key == char.textContent) {
         currentCharCount++
         nextChar && updateHighlights(nextChar.textContent)
-        char.style.background = !char.dataset.tried
+        char.style.background = char.dataset.tried
                                      ?
-                                'chartreuse' : 'gold'
+                                'gold' : 'chartreuse'
                 // if they missed then corrected a mistake => gold background
 
         nextChar?.classList?.add('hasBlink')
@@ -96,5 +96,3 @@ document.onkeypress = (e) => {
                                    <h3>${wpm.toFixed(0) +' Words per Minute'} </h3> `
     }
 }
-
-
