@@ -39,9 +39,7 @@ startBtn.onclick = function(e) {
     renderText(text)
     mistakesTag.textContent = `Current Mistakes: ${mistakes}`
     charCounterTag.textContent = `${text.length} chars`
-    myInterval = setInterval(() => {
-        timer+= 0.25; console.log(timer)
-    }, 250)
+    myInterval = setInterval(() => timer+= 0.25, 250)
 }
 
 function convertSeconds(seconds) {
@@ -69,16 +67,13 @@ document.onkeypress = (e) => {
         char.dataset.tried = true
         char.style.background = 'red'
     }
-    
     if (currentCharCount === text.length) {
         console.log(timer)
         clearInterval(myInterval)
         const correctCount = text.length - mistakes
         timer = timer < 0.25 ? 0.1 : timer // this is better than running the setInterval MORE times
         const wpm = [correctCount / timer * 60 ] / 4.7
-        if (timer > 60) {
-             timer = convertSeconds(timer)
-        }
+        timer = timer > 60 && convertSeconds(timer)
 
                     //average length of English words is 4.7 chars
         document.body.innerHTML = `<h1>You finished in ${timer} seconds</h1>
