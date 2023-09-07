@@ -42,7 +42,11 @@ renderKeys(allRows)
 const allTiles = [...document.querySelectorAll('.tile')]
 
 function updateHighlights(letter) {
-  allTiles.forEach(tile => tile?.classList?.remove('hasHighlight'))
+  allTiles.forEach(tile => {
+    tile?.classList?.remove('hasHighlight')
+    tile.textContent = tile.textContent.toUpperCase()
+  })
   const newTarget = allTiles.find(tile => tile.textContent == letter.toUpperCase())
+  newTarget.textContent = letter
   newTarget?.classList?.add('hasHighlight')
 }
