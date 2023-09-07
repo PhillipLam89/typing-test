@@ -5,7 +5,8 @@ const textArea = document.querySelector('textarea')
 const charCounterTag = document.getElementById('char-counter')
 const mistakesTag = document.getElementById('mistakes-counter')
 const preTestCharCounter = document.getElementById(`pre-letter-count`)
-
+const sound = new Audio('./sound.mp3')
+const wrongSound = new Audio('./wrongSound.mp3')
 function renderText(str) {
     const arr = str.split('')
     arr.forEach((char, index) => {
@@ -62,6 +63,7 @@ function convertSeconds(seconds) {
 document.onkeypress = (e) => {
     if (!userStarted) return
     if (e.keyCode == 32) e.preventDefault()
+    sound.play()
     const char = document.getElementById(`char${currentCharCount}`)
     const nextChar = char.nextElementSibling
 
@@ -80,7 +82,8 @@ document.onkeypress = (e) => {
         `Current Mistakes: ${++mistakes}`
         char.dataset.tried = true
         char.style.background = 'red'
-    }
+        wrongSound.play()
+    } else wrongSound.play()
     if (currentCharCount === text.length) {
         clearInterval(myInterval)
         const correctCount = text.length - mistakes
