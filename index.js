@@ -4,6 +4,7 @@ const container = document.getElementById('container')
 const textArea = document.querySelector('textarea')
 const charCounterTag = document.getElementById('char-counter')
 const mistakesTag = document.getElementById('mistakes-counter')
+const preTestCharCounter = document.getElementById(`pre-letter-count`)
 
 function renderText(str) {
     const arr = str.split('')
@@ -27,13 +28,17 @@ function renderDifficulty() {
  const rightOne = all.find(input => input.checked).value
  return collection[rightOne]
 }
+textArea.onkeypress = (e) => {
+    preTestCharCounter.textContent = `Total chars: ${++currentCharCount}`
+}
 
 startBtn.onclick = function(e) {
+    currentCharCount = 0
     container.innerHTML = ''
     this.disabled = true
     userStarted = true
     this.textContent = 'TYPE NOW!'
-    textArea.style.display = 'none'
+    textArea.remove()
     document.querySelector('fieldset').style.display = 'none'
     text = textArea.value.trim() || renderDifficulty()
     renderText(text)
@@ -73,7 +78,7 @@ document.onkeypress = (e) => {
         const correctCount = text.length - mistakes
         timer = timer < 0.25 ? 0.1 : timer // this is better than running the setInterval MORE times
         const wpm = [correctCount / timer * 60 ] / 4.7
-        timer = timer > 60 && convertSeconds(timer)
+        if (timer > 60) timer = convertSeconds(timer)
 
                     //average length of English words is 4.7 chars
         document.body.innerHTML = `<h1>You finished in ${timer} seconds</h1>
