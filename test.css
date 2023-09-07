@@ -27,7 +27,7 @@ textarea {
 
 .row {
   display: flex;
-  gap: 1em;
+  gap: .5em;
 }
 .row > * {
   display: grid;
@@ -42,5 +42,6 @@ textarea {
 #keyboard-container {
   display: grid;
   place-content: center;
-  gap: 1em;
+  gap: .2em;
 }
+
