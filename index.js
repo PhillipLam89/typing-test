@@ -68,12 +68,8 @@ document.onkeypress = (e) => {
         `Current Mistakes: ${++mistakes}`
         char.dataset.tried = true
         char.style.background = 'red'
-        if (mistakes > Math.round(text.length * 0.25)) {
-            alert('TOO MANY MISTAKES! RESTARTED')
-            window.location.reload()
-            return
-        }
     }
+    
     if (currentCharCount === text.length) {
         console.log(timer)
         clearInterval(myInterval)
