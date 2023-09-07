@@ -40,6 +40,7 @@ startBtn.onclick = function(e) {
     userStarted = true
     this.textContent = 'TYPE NOW!'
     textArea.remove()
+    preTestCharCounter.remove()
     document.querySelector('fieldset').style.display = 'none'
     text = textArea.value.trim() || renderDifficulty()
     renderText(text)
@@ -64,8 +65,10 @@ document.onkeypress = (e) => {
 
     if (e.key == char.textContent) {
         currentCharCount++
-        char.style.background = !char.dataset.tried  ?
-                             'green' : 'goldenrod'
+        char.style.background = !char.dataset.tried
+                                     ?
+                                'green' : 'goldenrod'
+                // if they missed then corrected a mistake => goldenrod background
 
         nextChar?.classList?.add('hasBlink')
         char.classList?.remove('hasBlink')
