@@ -8,34 +8,15 @@ const collection = {
     " Soil characteristics: In Georgia, clayey and rocky soils of the northern areas absorb less water at a slower rate than sandy soils, such as in Georgia's Coastal Plain. Soils absorbing less water results in more runoff overland into streams."
 
 }
-
 const row1 = [...'QWERTYUIOP']
 const row2 = [...'ASDFGHJKL']
-const row3 = [...'ZXCVBNM']
+let row3 = [...'ZXCVBNM']
+    row3 = ['Shift', ...row3]
+   
 const allRows = [row1, row2, row3]
-
 const board = document.getElementById('keyboard-container')
-function renderKeys(rowsArr) {
-  while (board.childElementCount < 3) {
-     const row = document.createElement('div')
-     row.id = `row${board.childElementCount}`
-     row.setAttribute('class', 'row')
 
-     for (let i = 0; i < rowsArr[board.childElementCount].length; i++) {
-        const tile = document.createElement('div')
-        tile.id =`${row.id}tile${i}`
-        tile.textContent = rowsArr[board.childElementCount][i]
-        tile.style.width = '2rem'
-        tile.style.height = '2rem'
-        tile.style.border = '2px solid royalblue'
-        tile.style.borderRadius= '50%'
-        tile.setAttribute('class', 'tile')
-        row.appendChild(tile)
-     }
-     board.appendChild(row)
-  }
-  document.querySelector(`#row1`).style.margin = '1em'
-  document.querySelector(`#row2`).style.marginLeft = '4em'
+function createSpaceBarDiv() {
   const spaceBarDiv = document.createElement('div')
   spaceBarDiv.setAttribute('class', 'spaceDiv tile')
   spaceBarDiv.textContent = ' '
@@ -46,12 +27,43 @@ function renderKeys(rowsArr) {
   spaceBarDiv.style.height = '2rem'
   board.appendChild(spaceBarDiv)
 }
+
+function renderKeys(rowsArr) {
+  while (board.childElementCount < 3) {
+     const row = document.createElement('div')
+     row.id = `row${board.childElementCount}`
+     row.setAttribute('class', 'row')
+
+     for (let i = 0; i < rowsArr[board.childElementCount].length; i++) {
+        const tile = document.createElement('div')
+
+        tile.textContent = rowsArr[board.childElementCount][i]
+        const isShift = tile.textContent == 'Shift'
+        tile.style.width = !isShift ? '2rem' : '6rem'
+        tile.style.height = '2rem'
+        tile.style.border = '2px solid royalblue'
+        tile.style.borderRadius = !isShift ? '50%' : '5px'
+        tile.setAttribute('class', !isShift ? 'tile' : 'shift')
+        row.appendChild(tile)
+     }
+     board.appendChild(row)
+  }
+  document.querySelector(`#row1`).style.marginLeft = '1.4em'
+  document.querySelector(`#row2`).style.marginLeft = '1em'
+  createSpaceBarDiv()
+}
 renderKeys(allRows)
 
-const allTiles = [...document.querySelectorAll('.tile')]
+  const allTiles =  [...document.querySelectorAll('.tile')]
+
+const shiftBTN  = document.querySelector('.shift')
 
 function updateHighlights(letter) {
+  shiftBTN.style.background = 'none'
   allTiles.forEach(tile => tile?.classList?.remove('hasHighlight'))
   const newTarget = allTiles.find(tile => tile?.textContent.includes(letter.toUpperCase()))
   newTarget?.classList?.add('hasHighlight')
+  if (text[currentCharCount] == text[currentCharCount].toUpperCase() ) {
+    shiftBTN.style.background = 'yellow'
+  }
 }
