@@ -34,8 +34,17 @@ function renderKeys(rowsArr) {
      }
      board.appendChild(row)
   }
-document.querySelector(`#row1`).style.margin = '1.65em'
-document.querySelector(`#row2`).style.marginLeft = '3.95em'
+  document.querySelector(`#row1`).style.margin = '1em'
+  document.querySelector(`#row2`).style.marginLeft = '4em'
+  const spaceBarDiv = document.createElement('div')
+  spaceBarDiv.setAttribute('class', 'spaceDiv tile')
+  spaceBarDiv.textContent = ' '
+  spaceBarDiv.style.margin = 'auto 3em'
+  spaceBarDiv.style.border = '3px solid royalblue'
+  spaceBarDiv.style.textAlign = 'center'
+  spaceBarDiv.style.borderRadius = '8px'
+  spaceBarDiv.style.height = '2rem'
+  board.appendChild(spaceBarDiv)
 }
 renderKeys(allRows)
 
@@ -43,6 +52,6 @@ const allTiles = [...document.querySelectorAll('.tile')]
 
 function updateHighlights(letter) {
   allTiles.forEach(tile => tile?.classList?.remove('hasHighlight'))
-  const newTarget = allTiles.find(tile => tile.textContent == letter.toUpperCase())
+  const newTarget = allTiles.find(tile => tile?.textContent.includes(letter.toUpperCase()))
   newTarget?.classList?.add('hasHighlight')
 }
