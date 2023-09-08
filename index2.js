@@ -8,8 +8,7 @@ const collection = {
     " Soil characteristics: In Georgia, clayey and rocky soils of the northern areas absorb less water at a slower rate than sandy soils, such as in Georgia's Coastal Plain. Soils absorbing less water results in more runoff overland into streams."
 
 }
-const isMobile = navigator.userAgentData.mobile;
-console.log(isMobile)
+
 const row1 = [...'QWERTYUIOP']
 const row2 = [...'ASDFGHJKL']
 let row3 = [...'ZXCVBNM']
