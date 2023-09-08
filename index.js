@@ -36,7 +36,10 @@ textArea.oninput = (e) => {
 }
 
 startBtn.onclick = function(e) {
-
+    if (isMobile)  { 
+      document.querySelector('.mobile-textarea').style.display = 'block'
+    }
+    
     container.innerHTML = ''
     this.disabled = true
     userStarted = true
