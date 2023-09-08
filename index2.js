@@ -12,7 +12,7 @@ const row1 = [...'QWERTYUIOP']
 const row2 = [...'ASDFGHJKL']
 let row3 = [...'ZXCVBNM']
     row3 = ['Shift', ...row3]
-   
+
 const allRows = [row1, row2, row3]
 const board = document.getElementById('keyboard-container')
 
@@ -63,7 +63,15 @@ function updateHighlights(letter) {
   allTiles.forEach(tile => tile?.classList?.remove('hasHighlight'))
   const newTarget = allTiles.find(tile => tile?.textContent.includes(letter.toUpperCase()))
   newTarget?.classList?.add('hasHighlight')
-  if (text[currentCharCount] == text[currentCharCount].toUpperCase() ) {
+  if (text[currentCharCount] == text[currentCharCount].toUpperCase()
+      && text[currentCharCount] !== ' ') {
     shiftBTN.style.background = 'yellow'
   }
+}
+
+const hideBtn = document.querySelector('.hide')
+hideBtn.onclick = () => {
+  document.querySelector('#keyboard-container').style.display = 'none'
+  hideBtn.disabled = true
+  hideBtn.textContent = 'Keyboard Hidden'
 }
