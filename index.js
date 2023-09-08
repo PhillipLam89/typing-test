@@ -7,6 +7,7 @@ const mistakesTag = document.getElementById('mistakes-counter')
 const preTestCharCounter = document.getElementById(`pre-letter-count`)
 const sound = new Audio('./sound.mp3')
 const wrongSound = new Audio('./wrongSound.mp3')
+
 function renderText(str) {
     const arr = str.split('')
     arr.forEach((char, index) => {
@@ -47,8 +48,9 @@ startBtn.onclick = function(e) {
     renderText(text)
     mistakesTag.textContent = `Current Mistakes: ${mistakes}`
     charCounterTag.textContent = `${text.length} chars`
-    const firstHighlight = allTiles.find(letterDiv => letterDiv.textContent == text[0].toUpperCase())
-    firstHighlight.classList.add('hasHighlight')
+    const firstHighlight = allTiles.find(letterDiv =>
+                           letterDiv.textContent == text[0].toUpperCase())
+    firstHighlight?.classList.add('hasHighlight')
     myInterval = setInterval(() => timer+= 0.25, 250)
 }
 
@@ -99,3 +101,4 @@ document.onkeypress = (e) => {
                                    <h3>${wpm.toFixed(0) +' Words per Minute'} </h3> `
     }
 }
+
