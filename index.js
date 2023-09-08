@@ -35,8 +35,6 @@ textArea.oninput = (e) => {
     `Total chars: ${textArea.value.trim().length}`
 }
 
-
-
 startBtn.onclick = function(e) {
 
     container.innerHTML = ''
