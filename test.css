@@ -43,4 +43,8 @@ textarea {
   place-content: center;
   gap: .1em;
 }
-
+#toggle-hide-div{
+  display: grid;
+  place-content: center;
+  margin-bottom: 0.35rem;
+}
