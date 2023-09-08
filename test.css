@@ -48,3 +48,7 @@ textarea {
   place-content: center;
   margin-bottom: 0.35rem;
 }
+
+.mobile-textarea{
+  display: none;
+}
