@@ -78,6 +78,4 @@ hideBtn.onclick = () => {
   hideBtn.textContent = 'Keyboard Hidden'
 }
 
-if (isMobile)  {
-  document.querySelector('.mobile-textarea').style.display = 'block'
-}
+
