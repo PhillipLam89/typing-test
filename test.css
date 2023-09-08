@@ -27,7 +27,7 @@ textarea {
 
 .row {
   display: flex;
-  gap: .5em;
+  gap: .15em;
 }
 .row > * {
   display: grid;
