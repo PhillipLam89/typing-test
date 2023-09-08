@@ -70,7 +70,7 @@ function convertSeconds(seconds) {
 
 document.onkeypress = (e) => {
     if (!userStarted) return
-    if (e.keyCode == 32) e.preventDefault()
+    if (e.keyCode == 32 || e.keyCode == 8 || e.keyCode == 46) e.preventDefault()
     sound.play()
     const char = document.getElementById(`char${currentCharCount}`)
     const nextChar = char.nextElementSibling
