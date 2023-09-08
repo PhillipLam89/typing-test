@@ -35,6 +35,8 @@ textArea.oninput = (e) => {
     `Total chars: ${textArea.value.trim().length}`
 }
 
+
+
 startBtn.onclick = function(e) {
 
     container.innerHTML = ''
@@ -51,6 +53,9 @@ startBtn.onclick = function(e) {
     const firstHighlight = allTiles.find(letterDiv =>
                            letterDiv.textContent == text[0].toUpperCase())
     firstHighlight?.classList.add('hasHighlight')
+    if (text[0] == text[0].toUpperCase()) {
+        shiftBTN.style.background = 'yellow'
+    }
     myInterval = setInterval(() => timer+= 0.25, 250)
 }
 
@@ -94,11 +99,11 @@ document.onkeypress = (e) => {
         if (timer >= 60) timer = convertSeconds(timer)
 
                     //average length of English words is 4.7 chars
-        document.body.innerHTML = `<h1>You finished in ${timer} seconds</h1>
-                                   <p>${mistakes} mistakes</p>
-                                   <p> ${correctCount} letters correct out of ${text.length}</p>
-                                   <p> accuracy: ${(correctCount / text.length * 100).toFixed(2) }%</p>
-                                   <h3>${wpm.toFixed(0) +' Words per Minute'} </h3> `
+        document.body.innerHTML =
+         `<h1>You finished in ${timer} seconds</h1>
+          <p>${mistakes} mistakes</p>
+          <p> ${correctCount} letters correct out of ${text.length}</p>
+          <p> accuracy: ${(correctCount / text.length * 100).toFixed(2) }%</p>
+          <h3>${wpm.toFixed(0) +' Words per Minute'} </h3> `
     }
 }
-
