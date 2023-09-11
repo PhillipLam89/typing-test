@@ -51,12 +51,13 @@ startBtn.onclick = function(e) {
     const firstHighlight = allTiles.find(letterDiv =>
                            letterDiv.textContent == text[0].toUpperCase())
     firstHighlight?.classList.add('hasHighlight')
-    if (text[0] == text[0].toUpperCase()) {
+    if (shiftNeeded.includes(text[0]) ) {
         shiftBTN.style.background = 'yellow'
     }
+
+
     myInterval = setInterval(() => timer+= 0.25, 250)
 }
-
 function convertSeconds(seconds) {
     //example: 70secs = 1min and 10 secs
     const mins = Math.round(seconds / 60)
@@ -67,7 +68,7 @@ function convertSeconds(seconds) {
 
 document.onkeypress = (e) => {
     if (!userStarted) return
-    if (e.keyCode == 32) e.preventDefault()
+    if (e.keyCode == 32 || e.keyCode == 8 || e.keyCode == 46) e.preventDefault()
     sound.play()
     const char = document.getElementById(`char${currentCharCount}`)
     const nextChar = char.nextElementSibling
