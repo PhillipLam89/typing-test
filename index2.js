@@ -9,12 +9,23 @@ const collection = {
 
 }
 
+document.addEventListener('keydown', function(event) {
+    capsLockOn = event.getModifierState('CapsLock');
+    const caps = document.querySelector('#capsBtn')
+    caps.textContent = capsLockOn ? 'CAPS ON' : 'CAPS OFF'
+    caps.style.background = capsLockOn ? 'chartreuse' : 'lightgrey'
+});
+
+let row0 = ['1!','2@','3#', '4$',
+           '5%', '6^','7&', '8*', '9(', '0)']
+
 const row1 = [...'QWERTYUIOP']
-const row2 = [...'ASDFGHJKL']
+let row2 = [...'ASDFGHJKL']
+    row2 = ['CAPS:', ...row2]
 let row3 = [...'ZXCVBNM']
     row3 = ['Shift', ...row3]
 
-const allRows = [row1, row2, row3]
+const allRows = [row0,row1, row2, row3]
 const board = document.getElementById('keyboard-container')
 
 function createSpaceBarDiv() {
@@ -30,7 +41,7 @@ function createSpaceBarDiv() {
 }
 
 function renderKeys(rowsArr) {
-  while (board.childElementCount < 3) {
+  while (board.childElementCount < 4) {
      const row = document.createElement('div')
      row.id = `row${board.childElementCount}`
      row.setAttribute('class', 'row')
@@ -39,24 +50,31 @@ function renderKeys(rowsArr) {
         const tile = document.createElement('div')
 
         tile.textContent = rowsArr[board.childElementCount][i]
-        const isShift = tile.textContent == 'Shift'
-        tile.style.width = !isShift ? '2rem' : '6rem'
-        tile.style.height = '2rem'
+        const isOther = tile.textContent.length > 2
+        tile.style.width = !isOther ? '1.8rem' : '5rem'
+        tile.style.height = '1.8rem'
         tile.style.border = '2px solid royalblue'
-        tile.style.borderRadius = !isShift ? '50%' : '5px'
-        tile.setAttribute('class', !isShift ? 'tile' : 'shift')
+        tile.style.borderRadius = !isOther ? '50%' : '5px'
+        tile.setAttribute('class', !isOther ? 'tile' : 'shift')
+        if (tile.textContent.includes('CAPS')) {
+          tile.id = 'capsBtn'
+          tile.style.width = '3.5rem'
+          tile.style.fontSize= '.5rem'
+          tile.style.fontWeight = 'bolder'
+
+        }
+        if (tile.id === 'capsBtn') tile.classList.remove('shift')
         row.appendChild(tile)
      }
      board.appendChild(row)
   }
-  document.querySelector(`#row1`).style.marginLeft = '1.4em'
+  document.querySelector(`#row1`).style.marginLeft = '1.2em'
   document.querySelector(`#row2`).style.marginLeft = '1em'
   createSpaceBarDiv()
 }
 renderKeys(allRows)
 
-  const allTiles =  [...document.querySelectorAll('.tile')]
-
+const allTiles =  [...document.querySelectorAll('.tile')]
 const shiftBTN  = document.querySelector('.shift')
 
 function updateHighlights(letter) {
@@ -64,17 +82,17 @@ function updateHighlights(letter) {
   allTiles.forEach(tile => tile?.classList?.remove('hasHighlight'))
   const newTarget = allTiles.find(tile => tile?.textContent.includes(letter.toUpperCase()))
   newTarget?.classList?.add('hasHighlight')
-  if (text[currentCharCount] == text[currentCharCount].toUpperCase()
-      && text[currentCharCount] !== ' ') {
+
+  if (shiftNeeded.includes(text[currentCharCount])) {
     shiftBTN.style.background = 'yellow'
   }
 }
-
+const capsChars = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
+const shiftNeeded = [...'!@#$%^&*()_+{}:"<>?', ...capsChars]
 const hideBtn = document.querySelector('.hide')
+
 hideBtn.onclick = () => {
   document.querySelector('#keyboard-container').style.display = 'none'
   hideBtn.disabled = true
   hideBtn.textContent = 'Keyboard Hidden'
 }
-
-
